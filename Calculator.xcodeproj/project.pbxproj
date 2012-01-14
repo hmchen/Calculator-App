@@ -127,9 +127,9 @@
 			isa = PBXGroup;
 			children = (
 				57AACE9114A2757000E838B1 /* CalculatorAppDelegate.h */,
+				57AACE9214A2757000E838B1 /* CalculatorAppDelegate.m */,
 				57AACE9F14A2A0D900E838B1 /* CalculatorBrain.h */,
 				57AACEA014A2A0D900E838B1 /* CalculatorBrain.m */,
-				57AACE9214A2757000E838B1 /* CalculatorAppDelegate.m */,
 				57AACE9414A2757000E838B1 /* MainStoryboard.storyboard */,
 				57AACE9714A2757000E838B1 /* CalculatorViewController.h */,
 				57AACE9814A2757000E838B1 /* CalculatorViewController.m */,

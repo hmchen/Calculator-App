@@ -176,6 +176,7 @@
 
 //use recursion to display the program in a more user-friendly manner
 + (NSString *)descriptionOfTopOfStack:(NSMutableArray *)stack {
+    return @"";
 }
 
 //display the passed program in a more user-friendly manner
