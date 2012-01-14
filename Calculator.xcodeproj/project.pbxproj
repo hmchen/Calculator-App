@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		571E03CE14BF7D610041AF38 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571E03A014BF60BB0041AF38 /* SenTestingKit.framework */; };
+		571E03CF14BF7D610041AF38 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AACE8214A2757000E838B1 /* UIKit.framework */; };
+		571E03D014BF7D610041AF38 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AACE8414A2757000E838B1 /* Foundation.framework */; };
+		571E03D614BF7D610041AF38 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 571E03D414BF7D610041AF38 /* InfoPlist.strings */; };
+		571E03D914BF7D610041AF38 /* CalculatorBrainLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 571E03D814BF7D610041AF38 /* CalculatorBrainLogicTests.m */; };
+		577FF63F14BF807C00CFDB55 /* CalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AACEA014A2A0D900E838B1 /* CalculatorBrain.m */; };
 		57AACE8314A2757000E838B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AACE8214A2757000E838B1 /* UIKit.framework */; };
 		57AACE8514A2757000E838B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AACE8414A2757000E838B1 /* Foundation.framework */; };
 		57AACE8714A2757000E838B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AACE8614A2757000E838B1 /* CoreGraphics.framework */; };
@@ -19,6 +25,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		571E03A014BF60BB0041AF38 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		571E03CD14BF7D610041AF38 /* CalculatorBrainLogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorBrainLogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		571E03D314BF7D610041AF38 /* CalculatorBrainLogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CalculatorBrainLogicTests-Info.plist"; sourceTree = "<group>"; };
+		571E03D514BF7D610041AF38 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		571E03D714BF7D610041AF38 /* CalculatorBrainLogicTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculatorBrainLogicTests.h; sourceTree = "<group>"; };
+		571E03D814BF7D610041AF38 /* CalculatorBrainLogicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrainLogicTests.m; sourceTree = "<group>"; };
+		571E03DA14BF7D610041AF38 /* CalculatorBrainLogicTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CalculatorBrainLogicTests-Prefix.pch"; sourceTree = "<group>"; };
 		57AACE7E14A2757000E838B1 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AACE8214A2757000E838B1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		57AACE8414A2757000E838B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -37,6 +50,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		571E03C914BF7D610041AF38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				571E03CE14BF7D610041AF38 /* SenTestingKit.framework in Frameworks */,
+				571E03CF14BF7D610041AF38 /* UIKit.framework in Frameworks */,
+				571E03D014BF7D610041AF38 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		57AACE7B14A2757000E838B1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -50,10 +73,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		571E03D114BF7D610041AF38 /* CalculatorBrainLogicTests */ = {
+			isa = PBXGroup;
+			children = (
+				571E03D714BF7D610041AF38 /* CalculatorBrainLogicTests.h */,
+				571E03D814BF7D610041AF38 /* CalculatorBrainLogicTests.m */,
+				571E03D214BF7D610041AF38 /* Supporting Files */,
+			);
+			path = CalculatorBrainLogicTests;
+			sourceTree = "<group>";
+		};
+		571E03D214BF7D610041AF38 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				571E03D314BF7D610041AF38 /* CalculatorBrainLogicTests-Info.plist */,
+				571E03D414BF7D610041AF38 /* InfoPlist.strings */,
+				571E03DA14BF7D610041AF38 /* CalculatorBrainLogicTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		57AACE7314A2757000E838B1 = {
 			isa = PBXGroup;
 			children = (
 				57AACE8814A2757000E838B1 /* Calculator */,
+				571E03D114BF7D610041AF38 /* CalculatorBrainLogicTests */,
 				57AACE8114A2757000E838B1 /* Frameworks */,
 				57AACE7F14A2757000E838B1 /* Products */,
 			);
@@ -63,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				57AACE7E14A2757000E838B1 /* Calculator.app */,
+				571E03CD14BF7D610041AF38 /* CalculatorBrainLogicTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -73,6 +118,7 @@
 				57AACE8214A2757000E838B1 /* UIKit.framework */,
 				57AACE8414A2757000E838B1 /* Foundation.framework */,
 				57AACE8614A2757000E838B1 /* CoreGraphics.framework */,
+				571E03A014BF60BB0041AF38 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -106,6 +152,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		571E03CC14BF7D610041AF38 /* CalculatorBrainLogicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 571E03DB14BF7D610041AF38 /* Build configuration list for PBXNativeTarget "CalculatorBrainLogicTests" */;
+			buildPhases = (
+				571E03C814BF7D610041AF38 /* Sources */,
+				571E03C914BF7D610041AF38 /* Frameworks */,
+				571E03CA14BF7D610041AF38 /* Resources */,
+				571E03CB14BF7D610041AF38 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CalculatorBrainLogicTests;
+			productName = CalculatorBrainLogicTests;
+			productReference = 571E03CD14BF7D610041AF38 /* CalculatorBrainLogicTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		57AACE7D14A2757000E838B1 /* Calculator */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 57AACE9C14A2757000E838B1 /* Build configuration list for PBXNativeTarget "Calculator" */;
@@ -144,11 +208,20 @@
 			projectRoot = "";
 			targets = (
 				57AACE7D14A2757000E838B1 /* Calculator */,
+				571E03CC14BF7D610041AF38 /* CalculatorBrainLogicTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		571E03CA14BF7D610041AF38 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				571E03D614BF7D610041AF38 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		57AACE7C14A2757000E838B1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -160,7 +233,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		571E03CB14BF7D610041AF38 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		571E03C814BF7D610041AF38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				577FF63F14BF807C00CFDB55 /* CalculatorBrain.m in Sources */,
+				571E03D914BF7D610041AF38 /* CalculatorBrainLogicTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		57AACE7A14A2757000E838B1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -175,6 +273,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		571E03D414BF7D610041AF38 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				571E03D514BF7D610041AF38 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		57AACE8B14A2757000E838B1 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -194,6 +300,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		571E03DC14BF7D610041AF38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CalculatorBrainLogicTests/CalculatorBrainLogicTests-Prefix.pch";
+				INFOPLIST_FILE = "CalculatorBrainLogicTests/CalculatorBrainLogicTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		571E03DD14BF7D610041AF38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CalculatorBrainLogicTests/CalculatorBrainLogicTests-Prefix.pch";
+				INFOPLIST_FILE = "CalculatorBrainLogicTests/CalculatorBrainLogicTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		57AACE9A14A2757000E838B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -264,6 +400,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		571E03DB14BF7D610041AF38 /* Build configuration list for PBXNativeTarget "CalculatorBrainLogicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				571E03DC14BF7D610041AF38 /* Debug */,
+				571E03DD14BF7D610041AF38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		57AACE7814A2757000E838B1 /* Build configuration list for PBXProject "Calculator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -280,6 +425,7 @@
 				57AACE9E14A2757000E838B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

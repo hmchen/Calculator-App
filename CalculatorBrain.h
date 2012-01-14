@@ -11,6 +11,7 @@
 @interface CalculatorBrain : NSObject
 //- means these are instance methods
 - (void)pushOperand:(double)operand;
+- (void)pushVariableOperand:(NSString *)variableOperand;
 - (double)performOperation:(NSString *)operation;
 - (void)resetBrain;
 
@@ -18,5 +19,8 @@
 //+ means these are class methods
 + (double)runProgram:(id)program;
 + (NSString *)descriptionOfProgram:(id)program;
+
++ (double)runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues;
++ (NSSet *)variablesUsedInProgram:(id)program;
 
 @end
