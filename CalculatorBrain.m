@@ -176,18 +176,60 @@
 
 //use recursion to display the program in a more user-friendly manner
 + (NSString *)descriptionOfTopOfStack:(NSMutableArray *)stack {
-    return @"";
+    NSString *description = @"";
+    //use id type because the items in the stack can either be 
+    //a NSNumber or a NSString
+    id topOfStack = [stack lastObject];
+    if (topOfStack) [stack removeLastObject];
+    
+    //use introspection to find the type of topOfStack
+    if ([topOfStack isKindOfClass:[NSNumber class]]) {
+        return [NSString stringWithFormat:@"%g", [topOfStack doubleValue]];
+    }
+    else if ([topOfStack isKindOfClass:[NSString class]]) {
+        NSString *str = topOfStack;
+        if ([self isOperation:str]) {
+            if ([CalculatorBrain isOneOperandOperation:str]) {
+                return [str stringByAppendingFormat:@"(%@)",[CalculatorBrain descriptionOfTopOfStack:stack]];
+            }
+            else if ([CalculatorBrain isTwoOperandOperation:str]) {
+                NSString *rightOperand = [CalculatorBrain descriptionOfTopOfStack:stack];
+                NSString *leftOperand = [CalculatorBrain descriptionOfTopOfStack:stack];
+                return [NSString stringWithFormat:@"%@ %@ %@", leftOperand, str, rightOperand];
+                
+            }
+            
+        }
+    }
+    
+    return description;
 }
 
 //display the passed program in a more user-friendly manner
 + (NSString *)descriptionOfProgram:(id)program {
     //local variables created in iOS5 start off at zero
+    NSString *description;
     NSMutableArray *stack;
+//    NSMutableArray *newStack;
     //use introspection to see if it is an array
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
     }
-    return [self descriptionOfTopOfStack:stack];
+    id topOfStack = [stack lastObject];
+    
+    if ([topOfStack isKindOfClass:[NSNumber class]]) {
+        if (topOfStack) [stack removeLastObject];
+        if ([stack count] == 0) return [NSString stringWithFormat:@"%g", [topOfStack doubleValue]];
+        description = [NSString stringWithFormat:@"%g, %@", [topOfStack doubleValue],       [CalculatorBrain descriptionOfProgram:[stack copy]]];
+    }
+    else {
+        description = [self descriptionOfTopOfStack:stack];
+//        NSArray *newArray = [stack copy];
+        if ([stack count]>0) {
+            description = [NSString stringWithFormat:@"%@, %@", description,       [CalculatorBrain descriptionOfProgram:[stack copy]]];
+        }
+    }
+    return description;
 }
 
 //pop the top operand off the stack
