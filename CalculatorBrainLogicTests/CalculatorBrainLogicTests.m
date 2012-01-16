@@ -64,7 +64,11 @@
     
     [self.brain pushVariableOperand:@"*"];
     description = [CalculatorBrain descriptionOfProgram:self.brain.program];
-    STAssertEqualObjects(description, @"5 * 6 + 7, 3", nil);
+    STAssertEqualObjects(description, @"5 * (6 + 7), 3", nil);
+    
+    [self.brain pushVariableOperand:@"-"];
+    description = [CalculatorBrain descriptionOfProgram:self.brain.program];
+    STAssertEqualObjects(description, @"3 - (5 * (6 + 7))", nil);
     
     //9 sqrt sqrt should display as sqrt(sqrt(9))
     [self.brain resetBrain];  
@@ -112,7 +116,45 @@
     description = [CalculatorBrain descriptionOfProgram:self.brain.program];
     STAssertEqualObjects(description, @"3 + sqrt(5)", nil);
     
-    //3 E 5 E 6 E 7 + * - should display as 3 - (5 * (6 + 7))
+    //3 E 5 + 6 E 7 * 9 sqrt would be “sqrt(9), 6 * 7, 3 + 5”
+    [self.brain resetBrain];
+    [self.brain pushOperand:3];
+    [self.brain pushOperand:5];
+    [self.brain pushVariableOperand:@"+"];
+    
+    [self.brain pushOperand:6];
+    [self.brain pushOperand:7];
+    [self.brain pushVariableOperand:@"*"];
+    description = [CalculatorBrain descriptionOfProgram:self.brain.program];
+    STAssertEqualObjects(description, @"6 * 7, 3 + 5", nil);
+    
+    [self.brain pushOperand:9];
+    [self.brain pushVariableOperand:@"sqrt"];
+    description = [CalculatorBrain descriptionOfProgram:self.brain.program];
+    STAssertEqualObjects(description, @"sqrt(9), 6 * 7, 3 + 5", nil);
+    
+    //π r r * * should display as π * (r * r) or, even better, π * r * r
+    [self.brain resetBrain];
+    [self.brain pushVariableOperand:@"π"];
+    [self.brain pushVariableOperand:@"x"];
+    [self.brain pushVariableOperand:@"x"];
+    [self.brain pushVariableOperand:@"*"];
+    [self.brain pushVariableOperand:@"*"];
+    description = [CalculatorBrain descriptionOfProgram:self.brain.program];
+    STAssertEqualObjects(description, @"π * (x * x)", nil);
+    
+    //a a * b b * + sqrt would be, at best, sqrt(a * a + b * b)
+    [self.brain resetBrain];
+    [self.brain pushVariableOperand:@"x"];
+    [self.brain pushVariableOperand:@"x"];
+    [self.brain pushVariableOperand:@"*"];
+    [self.brain pushVariableOperand:@"y"];
+    [self.brain pushVariableOperand:@"y"];
+    [self.brain pushVariableOperand:@"*"];
+    [self.brain pushVariableOperand:@"+"];
+    [self.brain pushVariableOperand:@"sqrt"];
+    description = [CalculatorBrain descriptionOfProgram:self.brain.program];
+    STAssertEqualObjects(description, @"sqrt(x * x + (y * y))", nil);
     
     
     
