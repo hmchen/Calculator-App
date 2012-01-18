@@ -76,6 +76,35 @@
     }
 }
 
+//update display
+- (void)updateDisplay {
+    double result = [CalculatorBrain runProgram:self.brain.program usingVariableValues:self.testVariableValues];
+    //%g used for floating point numbers
+    NSString *resultString = [NSString stringWithFormat:@"%g", result];
+    self.display.text = resultString;
+}
+
+//undo pressed
+- (IBAction)undoPressed {
+    if (self.userIsInTheMiddleOfEnteringANumber) {
+        if ([self.display.text length] == 1) {
+            double result = [CalculatorBrain runProgram:self.brain.program usingVariableValues:self.testVariableValues];
+            //%g used for floating point numbers
+            NSString *resultString = [NSString stringWithFormat:@"%g", result];
+            self.display.text = resultString;
+            self.userIsInTheMiddleOfEnteringANumber = NO;
+        }
+        else {
+            self.display.text = [self.display.text substringToIndex:[self.display.text length]-1];
+        }
+    }
+    else {
+        [self.brain removeLastObjectFromStack];
+        [self updateDisplay];
+    }
+    
+}
+
 /* IBAction - typedef to void, used by Xcode to identify this method as an action
     digitPressed - name of the function
     (UIButton *) - data type of sender
@@ -197,6 +226,8 @@
     }
     self.displayVariablesInProgram.text = description;
 }
+
+
 
 //set the testVariableValues to a specific value
 - (IBAction)testVariablePressed:(UIButton *)sender {
