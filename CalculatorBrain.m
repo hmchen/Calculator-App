@@ -90,6 +90,11 @@
     [self.programStack  removeAllObjects];
 }
 
+//remove the last object from the stack
+- (void)removeLastObjectFromStack {
+    if ([self.programStack lastObject]) [self.programStack removeLastObject];
+}
+
 ///// CalculatorBrain private helper class methods /////
 
 //distinguish between variables and operations

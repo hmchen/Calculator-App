@@ -17,6 +17,7 @@
 - (void)pushVariableOperand:(NSString *)variableOperand;
 - (double)performOperation:(NSString *)operation;
 - (void)resetBrain;
+- (void)removeLastObjectFromStack;
 
 //class methods
 + (double)runProgram:(id)program;
