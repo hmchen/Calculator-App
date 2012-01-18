@@ -43,9 +43,6 @@
 - (NSDictionary *)defaultDictionary {
     if (_defaultDictionary == nil) {
         _defaultDictionary = [[NSDictionary alloc] init];
-//        _defaultDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-//                              [NSNumber numberWithInt:1], @"x",
-//                              [NSNumber numberWithInt:2], @"y", nil];
     }
     return _defaultDictionary;
 }
@@ -241,7 +238,7 @@
 
 //display the passed program in a more user-friendly manner
 + (NSString *)descriptionOfProgram:(id)program {
-    NSString *description;
+    NSString *description = @"";
     NSMutableArray *stack;
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
