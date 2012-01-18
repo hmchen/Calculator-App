@@ -12,14 +12,24 @@
 @interface CalculatorViewController()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
 @property (nonatomic, strong) CalculatorBrain *brain;
+@property (nonatomic, strong) NSDictionary *testVariableValues;
+
+@property (nonatomic, strong) NSDictionary *testVariableValues1;
+@property (nonatomic, strong) NSDictionary *testVariableValues2;
+@property (nonatomic, strong) NSDictionary *testVariableValues3;
 @end
 
 @implementation CalculatorViewController
 
 @synthesize display = _display;
 @synthesize displayHistory = _displayHistory;
+@synthesize displayVariablesInProgram = _displayVariablesInProgram;
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
 @synthesize brain = _brain;
+@synthesize testVariableValues = _testVariableValues;
+@synthesize testVariableValues1 = _testVariableValues1;
+@synthesize testVariableValues2 = _testVariableValues2;
+@synthesize testVariableValues3 = _testVariableValues3;
 
 //allocate a new brain if one does not exist
 - (CalculatorBrain *)brain {
@@ -33,6 +43,26 @@
     if (range.location != NSNotFound) {
         self.displayHistory.text = [self.displayHistory.text substringToIndex:range.location];
     }
+}
+
+//override getter method for testVariableValues1
+- (NSDictionary *)testVariableValues1 {
+    if (_testVariableValues1 == nil) {
+        _testVariableValues1 = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:1], @"x",
+                              [NSNumber numberWithInt:2], @"y", nil];
+    }
+    return _testVariableValues1;
+}
+
+//override getter method for testVariableValues2
+- (NSDictionary *)testVariableValues2 {
+    if (_testVariableValues2 == nil) {
+        _testVariableValues2 = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [NSNumber numberWithInt:3], @"x",
+                                [NSNumber numberWithInt:4], @"y", nil];
+    }
+    return _testVariableValues2;
 }
 
 //backspace pressed
@@ -133,6 +163,7 @@
 //    [self removeEqualInDisplayHistory];
 //    self.displayHistory.text = [self.displayHistory.text stringByAppendingString:sender.currentTitle];
 //    self.displayHistory.text = [self.displayHistory.text stringByAppendingString:@" ="];
+    self.displayHistory.text = [CalculatorBrain descriptionOfProgram:[self.brain program]]; 
 }
 
 - (IBAction)variablePressed:(UIButton *)sender {
@@ -147,6 +178,52 @@
 //    self.displayHistory.text = [self.displayHistory.text stringByAppendingString:@" "];
 }
 
+//update displayVariablesInProgram with the variables and values found in the program
+- (void)updateDisplayVariablesInProgram {
+    NSString *description;
+    NSNumber *num;
+    NSSet *variableSet = [CalculatorBrain variablesUsedInProgram:self.brain.program];
+    
+    for (NSString *key in variableSet) {
+        num = [self.testVariableValues objectForKey:key];
+        if (num) {
+            if (description == nil) {
+                description = [NSString stringWithFormat:@"%@ = %g", key, [num doubleValue]];
+            }
+            else {
+                description = [description stringByAppendingFormat:@" %@ = %g", key, [num doubleValue]];
+            }
+        }
+    }
+    self.displayVariablesInProgram.text = description;
+}
+
+//set the testVariableValues to a specific value
+- (IBAction)testVariablePressed:(UIButton *)sender {
+    double result;
+    NSString *testButton = sender.currentTitle;
+    if ([testButton isEqualToString:@"Test 1"]) {
+        self.testVariableValues = self.testVariableValues1;
+        result = [CalculatorBrain runProgram:self.brain.program usingVariableValues:self.testVariableValues];
+    }
+    else if ([testButton isEqualToString:@"Test 2"]) {
+        self.testVariableValues = self.testVariableValues2;
+        result = [CalculatorBrain runProgram:self.brain.program usingVariableValues:self.testVariableValues];
+    }
+    else if ([testButton isEqualToString:@"Test 3"]) {
+        self.testVariableValues = self.testVariableValues3;
+        result = [CalculatorBrain runProgram:self.brain.program usingVariableValues:self.testVariableValues];
+    }
+    self.display.text = [NSString stringWithFormat:@"%g", result];
+    [self updateDisplayVariablesInProgram];
+}
+
+
+
+- (void)viewDidUnload {
+    [self setDisplayVariablesInProgram:nil];
+    [super viewDidUnload];
+}
 @end
 
 
