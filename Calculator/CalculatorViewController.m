@@ -37,14 +37,6 @@
     return _brain;
 }
 
-//remove "=" from displayHistory
-- (void)removeEqualInDisplayHistory {
-    NSRange range = [self.displayHistory.text rangeOfString:@"="];
-    if (range.location != NSNotFound) {
-        self.displayHistory.text = [self.displayHistory.text substringToIndex:range.location];
-    }
-}
-
 //override getter method for testVariableValues1
 - (NSDictionary *)testVariableValues1 {
     if (_testVariableValues1 == nil) {
@@ -65,34 +57,51 @@
     return _testVariableValues2;
 }
 
-//backspace pressed
-- (IBAction)backspacePressed {
-    if ([self.display.text length] == 1) {
-        self.display.text = @"0";
-        self.userIsInTheMiddleOfEnteringANumber = NO;
-    }
-    else {
-        self.display.text = [self.display.text substringToIndex:[self.display.text length]-1];
-    }
-}
-
 //update display
 - (void)updateDisplay {
     double result = [CalculatorBrain runProgram:self.brain.program usingVariableValues:self.testVariableValues];
-    //%g used for floating point numbers
     NSString *resultString = [NSString stringWithFormat:@"%g", result];
     self.display.text = resultString;
+}
+
+//update displayHistory
+- (void)updateDisplayHistory {
+    self.displayHistory.text = [CalculatorBrain descriptionOfProgram:[self.brain program]]; 
+}
+
+//update displayVariablesInProgram with the variables and values found in the program
+- (void)updateDisplayVariablesInProgram {
+    NSString *description = @"";
+    NSNumber *num;
+    NSSet *variableSet = [CalculatorBrain variablesUsedInProgram:self.brain.program];
+    
+    for (NSString *key in variableSet) {
+        num = [self.testVariableValues objectForKey:key];
+        if (num) {
+            if (description == nil) {
+                description = [NSString stringWithFormat:@"%@ = %g", key, [num doubleValue]];
+            }
+            else {
+                description = [description stringByAppendingFormat:@" %@ = %g", key, [num doubleValue]];
+            }
+        }
+    }
+    self.displayVariablesInProgram.text = description;
+}
+
+//updates display, displayHistory, displayVariablesInProgram
+- (void)updateAllTheDisplays {
+    [self updateDisplay];
+    [self updateDisplayHistory];
+    [self updateDisplayVariablesInProgram];
 }
 
 //undo pressed
 - (IBAction)undoPressed {
     if (self.userIsInTheMiddleOfEnteringANumber) {
         if ([self.display.text length] == 1) {
-            double result = [CalculatorBrain runProgram:self.brain.program usingVariableValues:self.testVariableValues];
-            //%g used for floating point numbers
-            NSString *resultString = [NSString stringWithFormat:@"%g", result];
-            self.display.text = resultString;
             self.userIsInTheMiddleOfEnteringANumber = NO;
+            [self updateAllTheDisplays];
         }
         else {
             self.display.text = [self.display.text substringToIndex:[self.display.text length]-1];
@@ -100,28 +109,19 @@
     }
     else {
         [self.brain removeLastObjectFromStack];
-        [self updateDisplay];
+        [self updateAllTheDisplays];
     }
     
 }
 
-/* IBAction - typedef to void, used by Xcode to identify this method as an action
-    digitPressed - name of the function
-    (UIButton *) - data type of sender
- */
+//digit pressed
 - (IBAction)digitPressed:(UIButton *)sender {
-    //NSString pointer called digit
     NSString *digit = [sender currentTitle];
     //NSLog - similar to printf in c, %@ is an object 
-    NSLog(@"digit pressed = %@", digit);
-    
-//    [self removeEqualInDisplayHistory];
+//    NSLog(@"digit pressed = %@", digit);
     
     if (self.userIsInTheMiddleOfEnteringANumber) {
-        //pointer to UILabel
-        UILabel *myDisplay = self.display; //same as [self display];
-        //text is a method that will return the text in the UILabel
-        NSString *currentText = myDisplay.text; //  [myDisplay text]; 
+        NSString *currentText = self.display.text;
         
         //check if there is a "." in the display
         if ([digit isEqualToString:@"."]) {
@@ -130,12 +130,8 @@
                 return;
             }
         }
-                
         //append currentText to digit
-        NSString *newText = [currentText stringByAppendingString:digit];
-        
-        //set text in myDisplay
-        myDisplay.text = newText; //[myDisplay setText:newText]; 
+        self.display.text = [currentText stringByAppendingString:digit];
     }
     else {
         self.display.text = digit;
@@ -163,11 +159,8 @@
         //push the double value into the stack
         [self.brain pushOperand:[self.display.text doubleValue]];
     }
-    //update the displayHistory with the operand
-//    [self removeEqualInDisplayHistory];
-//    self.displayHistory.text = [self.displayHistory.text stringByAppendingString:self.display.text];
-//    self.displayHistory.text = [self.displayHistory.text stringByAppendingString:@" "];
-    self.displayHistory.text = [CalculatorBrain descriptionOfProgram:[self.brain program]]; 
+    [self updateDisplayHistory];
+    [self updateDisplayVariablesInProgram];
     self.userIsInTheMiddleOfEnteringANumber = NO;
 }
 //clear the display and the stack
@@ -175,61 +168,33 @@
     [self.brain resetBrain];
     self.display.text = @"0";
     self.displayHistory.text = @"";
+    self.displayVariablesInProgram.text = @"";
     self.userIsInTheMiddleOfEnteringANumber = NO;
 }
 
+//operation pressed
 - (IBAction)operationPressed:(UIButton *)sender {
     
     if (self.userIsInTheMiddleOfEnteringANumber) [self enterPressed];
-//    [self enterPressed];
     
     double result = [self.brain performOperation:sender.currentTitle];
-    //%g used for floating point numbers
     NSString *resultString = [NSString stringWithFormat:@"%g", result];
     self.display.text = resultString;
-    
-    //update the displayHistory with the operation pressed 
-//    [self removeEqualInDisplayHistory];
-//    self.displayHistory.text = [self.displayHistory.text stringByAppendingString:sender.currentTitle];
-//    self.displayHistory.text = [self.displayHistory.text stringByAppendingString:@" ="];
-    self.displayHistory.text = [CalculatorBrain descriptionOfProgram:[self.brain program]]; 
+    [self updateDisplayHistory];
+    [self updateDisplayVariablesInProgram];
 }
 
+//variable pressed
 - (IBAction)variablePressed:(UIButton *)sender {
     if (self.userIsInTheMiddleOfEnteringANumber) [self enterPressed];
     
     NSString *variable = [sender currentTitle];
     self.display.text = variable;
-    
-    //update the displayHistory with the variable operand pressed 
-//    [self removeEqualInDisplayHistory];
-//    self.displayHistory.text = [self.displayHistory.text stringByAppendingString:sender.currentTitle];
-//    self.displayHistory.text = [self.displayHistory.text stringByAppendingString:@" "];
-}
-
-//update displayVariablesInProgram with the variables and values found in the program
-- (void)updateDisplayVariablesInProgram {
-    NSString *description;
-    NSNumber *num;
-    NSSet *variableSet = [CalculatorBrain variablesUsedInProgram:self.brain.program];
-    
-    for (NSString *key in variableSet) {
-        num = [self.testVariableValues objectForKey:key];
-        if (num) {
-            if (description == nil) {
-                description = [NSString stringWithFormat:@"%@ = %g", key, [num doubleValue]];
-            }
-            else {
-                description = [description stringByAppendingFormat:@" %@ = %g", key, [num doubleValue]];
-            }
-        }
-    }
-    self.displayVariablesInProgram.text = description;
+    self.userIsInTheMiddleOfEnteringANumber = YES; 
 }
 
 
-
-//set the testVariableValues to a specific value
+//test button pressed, set the testVariableValues to a specific value
 - (IBAction)testVariablePressed:(UIButton *)sender {
     double result;
     NSString *testButton = sender.currentTitle;
