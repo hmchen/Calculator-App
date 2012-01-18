@@ -9,17 +9,18 @@
 #import <Foundation/Foundation.h>
 
 @interface CalculatorBrain : NSObject
-//- means these are instance methods
+
+@property (readonly) id program;
+
+//instance methods
 - (void)pushOperand:(double)operand;
 - (void)pushVariableOperand:(NSString *)variableOperand;
 - (double)performOperation:(NSString *)operation;
 - (void)resetBrain;
 
-@property (readonly) id program;
-//+ means these are class methods
+//class methods
 + (double)runProgram:(id)program;
 + (NSString *)descriptionOfProgram:(id)program;
-
 + (double)runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues;
 + (NSSet *)variablesUsedInProgram:(id)program;
 
