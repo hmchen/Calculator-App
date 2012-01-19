@@ -13,6 +13,7 @@
 		571E03D614BF7D610041AF38 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 571E03D414BF7D610041AF38 /* InfoPlist.strings */; };
 		571E03D914BF7D610041AF38 /* CalculatorBrainLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 571E03D814BF7D610041AF38 /* CalculatorBrainLogicTests.m */; };
 		577FF63F14BF807C00CFDB55 /* CalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AACEA014A2A0D900E838B1 /* CalculatorBrain.m */; };
+		579E877F14C8D35500446175 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 579E877E14C8D35500446175 /* README */; };
 		57AACE8314A2757000E838B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AACE8214A2757000E838B1 /* UIKit.framework */; };
 		57AACE8514A2757000E838B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AACE8414A2757000E838B1 /* Foundation.framework */; };
 		57AACE8714A2757000E838B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AACE8614A2757000E838B1 /* CoreGraphics.framework */; };
@@ -32,6 +33,7 @@
 		571E03D714BF7D610041AF38 /* CalculatorBrainLogicTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculatorBrainLogicTests.h; sourceTree = "<group>"; };
 		571E03D814BF7D610041AF38 /* CalculatorBrainLogicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrainLogicTests.m; sourceTree = "<group>"; };
 		571E03DA14BF7D610041AF38 /* CalculatorBrainLogicTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CalculatorBrainLogicTests-Prefix.pch"; sourceTree = "<group>"; };
+		579E877E14C8D35500446175 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		57AACE7E14A2757000E838B1 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AACE8214A2757000E838B1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		57AACE8414A2757000E838B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -96,6 +98,7 @@
 		57AACE7314A2757000E838B1 = {
 			isa = PBXGroup;
 			children = (
+				579E877E14C8D35500446175 /* README */,
 				57AACE8814A2757000E838B1 /* Calculator */,
 				571E03D114BF7D610041AF38 /* CalculatorBrainLogicTests */,
 				57AACE8114A2757000E838B1 /* Frameworks */,
@@ -228,6 +231,7 @@
 			files = (
 				57AACE8D14A2757000E838B1 /* InfoPlist.strings in Resources */,
 				57AACE9614A2757000E838B1 /* MainStoryboard.storyboard in Resources */,
+				579E877F14C8D35500446175 /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,1 +1,4 @@
+*.DS_Store
 Calculator.xcodeproj/project.xcworkspace/xcuserdata/hmchen.xcuserdatad/UserInterfaceState.xcuserstate
+project.xcworkspace/
+xcuserdata/
