@@ -13,6 +13,7 @@
 
 @synthesize zoomScale = _zoomScale;
 
+//zoomScale getter
 - (CGFloat)zoomScale {
     if (_zoomScale == 0) return 1;
     return _zoomScale;
@@ -23,6 +24,15 @@
     if (_zoomScale != zoomScale) {
         _zoomScale = zoomScale;
         [self setNeedsDisplay];
+    }
+}
+
+//pinch handler, implemented in the view so other handlers can call upon it
+- (void)pinch:(UIPinchGestureRecognizer *)gesture {
+    if ((gesture.state == UIGestureRecognizerStateChanged) ||
+        (gesture.state == UIGestureRecognizerStateEnded)) {
+        self.zoomScale *= gesture.scale;
+        gesture.scale = 1; //reset to 1 to get incremental instead of cumulative scale
     }
 }
 
