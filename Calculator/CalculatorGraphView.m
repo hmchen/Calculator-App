@@ -64,10 +64,9 @@
     CGPoint midPoint;
     midPoint.x = self.bounds.origin.x + self.bounds.size.width/2;
     midPoint.y = self.bounds.origin.x + self.bounds.size.height/2;
-    CGFloat pointsPerUnit = 5;
     [[UIColor blueColor] setStroke];    //set line color
     //draw axes
-    [AxesDrawer drawAxesInRect:rect originAtPoint:midPoint scale:pointsPerUnit];
+    [AxesDrawer drawAxesInRect:rect originAtPoint:midPoint scale:self.zoomScale];
 }
 
 @end
