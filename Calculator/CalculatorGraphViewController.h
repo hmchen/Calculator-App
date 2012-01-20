@@ -10,4 +10,5 @@
 
 @interface CalculatorGraphViewController : UIViewController
 
+@property (nonatomic, strong) id program; //the model, the current program when the graph button is pressed
 @end
