@@ -11,11 +11,22 @@
 
 @implementation CalculatorGraphView
 
+//when bounds change, call drawRect
+- (void)setup {
+    self.contentMode = UIViewContentModeRedraw;
+}
+
+//awakeFromNib gets called when a UIView comes out of a storyboard
+- (void)awakeFromNib {
+    [self setup];
+}
+
+//gets called when the UIView first gets setup
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        [self setup];
     }
     return self;
 }
