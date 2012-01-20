@@ -17,8 +17,14 @@
 @synthesize graphView = _graphView;
 @synthesize program = _program;
 
+- (void)setGraphView:(CalculatorGraphView *)graphView {
+    _graphView = graphView;
+    [self.graphView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pinch:)]];
+}
+
+//returns YES to supports all orientations
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return YES; //supports all orientations
+    return YES; 
 }
 
 @end
