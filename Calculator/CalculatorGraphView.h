@@ -10,4 +10,6 @@
 
 @interface CalculatorGraphView : UIView
 
+@property (nonatomic) CGFloat zoomScale;
+
 @end

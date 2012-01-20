@@ -11,6 +11,21 @@
 
 @implementation CalculatorGraphView
 
+@synthesize zoomScale = _zoomScale;
+
+- (CGFloat)zoomScale {
+    if (_zoomScale == 0) return 1;
+    return _zoomScale;
+}
+
+//redraw when a new zoomScale is set
+- (void)setZoomScale:(CGFloat)zoomScale {
+    if (_zoomScale != zoomScale) {
+        _zoomScale = zoomScale;
+        [self setNeedsDisplay];
+    }
+}
+
 //when bounds change, call drawRect
 - (void)setup {
     self.contentMode = UIViewContentModeRedraw;
