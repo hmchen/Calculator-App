@@ -15,6 +15,10 @@
 
 @implementation CalculatorGraphViewController
 @synthesize graphView = _graphView;
+@synthesize program = _program;
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return YES; //supports all orientations
+}
 
 @end
