@@ -14,6 +14,7 @@
 		571E03D914BF7D610041AF38 /* CalculatorBrainLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 571E03D814BF7D610041AF38 /* CalculatorBrainLogicTests.m */; };
 		5746BA0C14C90CCD005979C1 /* CalculatorGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5746BA0B14C90CCD005979C1 /* CalculatorGraphView.m */; };
 		5770274114C90D40001D3AA8 /* CalculatorGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5770274014C90D40001D3AA8 /* CalculatorGraphViewController.m */; };
+		5770274414C90F0D001D3AA8 /* AxesDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5770274314C90F0D001D3AA8 /* AxesDrawer.m */; };
 		577FF63F14BF807C00CFDB55 /* CalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AACEA014A2A0D900E838B1 /* CalculatorBrain.m */; };
 		579E877F14C8D35500446175 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 579E877E14C8D35500446175 /* README */; };
 		57AACE8314A2757000E838B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AACE8214A2757000E838B1 /* UIKit.framework */; };
@@ -39,6 +40,8 @@
 		5746BA0B14C90CCD005979C1 /* CalculatorGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorGraphView.m; sourceTree = "<group>"; };
 		5770273F14C90D40001D3AA8 /* CalculatorGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorGraphViewController.h; sourceTree = "<group>"; };
 		5770274014C90D40001D3AA8 /* CalculatorGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorGraphViewController.m; sourceTree = "<group>"; };
+		5770274214C90F0D001D3AA8 /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
+		5770274314C90F0D001D3AA8 /* AxesDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxesDrawer.m; sourceTree = "<group>"; };
 		579E877E14C8D35500446175 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		57AACE7E14A2757000E838B1 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AACE8214A2757000E838B1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -140,6 +143,8 @@
 				57AACE9F14A2A0D900E838B1 /* CalculatorBrain.h */,
 				57AACEA014A2A0D900E838B1 /* CalculatorBrain.m */,
 				57AACE9414A2757000E838B1 /* MainStoryboard.storyboard */,
+				5770274214C90F0D001D3AA8 /* AxesDrawer.h */,
+				5770274314C90F0D001D3AA8 /* AxesDrawer.m */,
 				57AACE9714A2757000E838B1 /* CalculatorViewController.h */,
 				57AACE9814A2757000E838B1 /* CalculatorViewController.m */,
 				5746BA0A14C90CCD005979C1 /* CalculatorGraphView.h */,
@@ -283,6 +288,7 @@
 				57AACEA114A2A0D900E838B1 /* CalculatorBrain.m in Sources */,
 				5746BA0C14C90CCD005979C1 /* CalculatorGraphView.m in Sources */,
 				5770274114C90D40001D3AA8 /* CalculatorGraphViewController.m in Sources */,
+				5770274414C90F0D001D3AA8 /* AxesDrawer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
