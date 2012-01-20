@@ -12,4 +12,6 @@
 
 @property (nonatomic) CGFloat zoomScale;
 
+- (void)pinch:(UIPinchGestureRecognizer *)gesture;
+
 @end
