@@ -28,6 +28,12 @@
     }
 }
 
+//redraw when a new originPoint is set
+- (void)setOriginPoint:(CGPoint)originPoint {
+    _originPoint = originPoint;
+    [self setNeedsDisplay];
+}
+
 //pinch handler, implemented in the view so other controllers can call upon it
 - (void)pinch:(UIPinchGestureRecognizer *)gesture {
     if ((gesture.state == UIGestureRecognizerStateChanged) ||
