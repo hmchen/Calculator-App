@@ -12,6 +12,7 @@
 @implementation CalculatorGraphView
 
 @synthesize zoomScale = _zoomScale;
+@synthesize originPoint = _originPoint;
 
 //zoomScale getter
 - (CGFloat)zoomScale {
@@ -27,12 +28,22 @@
     }
 }
 
-//pinch handler, implemented in the view so other handlers can call upon it
+//pinch handler, implemented in the view so other controllers can call upon it
 - (void)pinch:(UIPinchGestureRecognizer *)gesture {
     if ((gesture.state == UIGestureRecognizerStateChanged) ||
         (gesture.state == UIGestureRecognizerStateEnded)) {
         self.zoomScale *= gesture.scale;
         gesture.scale = 1; //reset to 1 to get incremental instead of cumulative scale
+    }
+}
+
+//pan handler, implemented in the view so other controllers can call upon it
+- (void)pan:(UIPanGestureRecognizer *)gesture {
+    if ((gesture.state == UIGestureRecognizerStateChanged) ||
+        (gesture.state == UIGestureRecognizerStateEnded)) {
+        CGPoint translation = [gesture translationInView:self];
+        self.originPoint = CGPointMake(self.originPoint.x+translation.x, self.originPoint.y+translation.y);
+        [gesture setTranslation:CGPointZero inView:self]; //reset to get incremental instead of cumulative translation
     }
 }
 
@@ -59,14 +70,10 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();   //always get the context
-    
-    //get mid point of the view
-    CGPoint midPoint;
-    midPoint.x = self.bounds.origin.x + self.bounds.size.width/2;
-    midPoint.y = self.bounds.origin.x + self.bounds.size.height/2;
+
     [[UIColor blueColor] setStroke];    //set line color
     //draw axes
-    [AxesDrawer drawAxesInRect:rect originAtPoint:midPoint scale:self.zoomScale];
+    [AxesDrawer drawAxesInRect:rect originAtPoint:self.originPoint scale:self.zoomScale];
 }
 
 @end
