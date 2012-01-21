@@ -19,7 +19,11 @@
 
 - (void)setGraphView:(CalculatorGraphView *)graphView {
     _graphView = graphView;
+    //Only views have recognizers
+    //enable pinch gesture in the CalculatorGraphView using its pinch: handler
     [self.graphView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pinch:)]];
+    //enable pan gesture in the CalculatorGraphView using its pan: handler
+    [self.graphView addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pan:)]];
 }
 
 //returns YES to supports all orientations
