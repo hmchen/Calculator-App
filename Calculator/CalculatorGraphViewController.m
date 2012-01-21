@@ -24,6 +24,8 @@
     [self.graphView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pinch:)]];
     //enable pan gesture in the CalculatorGraphView using its pan: handler
     [self.graphView addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pan:)]];
+    //enable triple-tap gesture to set originPoint in the CalculatorGraphView using its tripleTapSetOriginPoint: handler
+    [self.graphView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(tripleTapSetOriginPoint:)]];
 }
 
 //returns YES to supports all orientations

@@ -47,7 +47,7 @@
     }
 }
 
-//pinch handler, implemented in the view so other controllers can call upon it
+//pinch handler, pinch to zoom implemented in the view so other controllers can call upon it
 - (void)pinch:(UIPinchGestureRecognizer *)gesture {
     if ((gesture.state == UIGestureRecognizerStateChanged) ||
         (gesture.state == UIGestureRecognizerStateEnded)) {
@@ -56,13 +56,21 @@
     }
 }
 
-//pan handler, implemented in the view so other controllers can call upon it
+//pan handler, panning implemented in the view so other controllers can call upon it
 - (void)pan:(UIPanGestureRecognizer *)gesture {
     if ((gesture.state == UIGestureRecognizerStateChanged) ||
         (gesture.state == UIGestureRecognizerStateEnded)) {
         CGPoint translation = [gesture translationInView:self];
         self.originPoint = CGPointMake(self.originPoint.x+translation.x, self.originPoint.y+translation.y);
         [gesture setTranslation:CGPointZero inView:self]; //reset to get incremental instead of cumulative translation
+    }
+}
+
+//triple-tap handler, set originPoint to the point of the triple-tap
+- (void)tripleTapSetOriginPoint:(UITapGestureRecognizer *)gesture {
+    gesture.numberOfTapsRequired = 3;
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        self.originPoint = [gesture locationInView:self];
     }
 }
 
