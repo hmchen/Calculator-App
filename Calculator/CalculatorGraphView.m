@@ -28,17 +28,6 @@
     }
 }
 
-//if originPoint is at 0,0 then set to midPoint
-- (CGPoint)originPoint {
-    if (_originPoint.x == 0 && _originPoint.y == 0) {
-        CGPoint midPoint;
-        midPoint.x = self.bounds.origin.x + self.bounds.size.width/2;
-        midPoint.y = self.bounds.origin.x + self.bounds.size.height/2;
-        _originPoint = midPoint;
-    }
-    return _originPoint;
-}
-
 //redraw when a new originPoint is set
 - (void)setOriginPoint:(CGPoint)originPoint {
     if (!CGPointEqualToPoint(originPoint, _originPoint )) {
@@ -81,6 +70,11 @@
 
 //awakeFromNib gets called when a UIView comes out of a storyboard
 - (void)awakeFromNib {
+    CGPoint midPoint;
+    midPoint.x = self.bounds.origin.x + self.bounds.size.width/2;
+    midPoint.y = self.bounds.origin.x + self.bounds.size.height/2;
+    self.originPoint = midPoint;
+    
     [self setup];
 }
 
