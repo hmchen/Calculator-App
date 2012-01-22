@@ -48,7 +48,7 @@
 
 + (void)drawHashMarksInRect:(CGRect)bounds originAtPoint:(CGPoint)axisOrigin scale:(CGFloat)pointsPerUnit
 {
-	if (!pointsPerUnit) return;
+	if (!pointsPerUnit) return; //if pointsPerUnit == 0, return
 
 	if (((axisOrigin.x < bounds.origin.x) || (axisOrigin.x > bounds.origin.x+bounds.size.width)) &&
 		((axisOrigin.y < bounds.origin.y) || (axisOrigin.y > bounds.origin.y+bounds.size.height))) {
@@ -129,21 +129,24 @@
 	CGContextStrokePath(context);
 }
 
-+ (void)drawAxesInRect:(CGRect)bounds originAtPoint:(CGPoint)axisOrigin scale:(CGFloat)pointsPerUnit
-{
-	CGContextRef context = UIGraphicsGetCurrentContext();
 
++ (void)drawAxesInRect:(CGRect)bounds originAtPoint:(CGPoint)axisOrigin scale:(CGFloat)pointsPerUnit
+{   //always get the context
+	CGContextRef context = UIGraphicsGetCurrentContext(); 
+    //always push the context when you use subroutines to draw
 	UIGraphicsPushContext(context);
 
 	CGContextBeginPath(context);
+    //draw x-axes
 	CGContextMoveToPoint(context, bounds.origin.x, axisOrigin.y);
 	CGContextAddLineToPoint(context, bounds.origin.x+bounds.size.width, axisOrigin.y);
+    //draw y-axes
 	CGContextMoveToPoint(context, axisOrigin.x, bounds.origin.y);
 	CGContextAddLineToPoint(context, axisOrigin.x, bounds.origin.y+bounds.size.height);
-	CGContextStrokePath(context);
-
+    
+    CGContextStrokePath(context);
 	[self drawHashMarksInRect:bounds originAtPoint:axisOrigin scale:pointsPerUnit];
-
+    //remember to pop the context when finished drawing
 	UIGraphicsPopContext();
 }
 
