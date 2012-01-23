@@ -13,14 +13,15 @@
 
 @synthesize zoomScale = _zoomScale;
 @synthesize originPoint = _originPoint;
+@synthesize dataSource = _dataSource;
 
 //zoomScale getter
 - (CGFloat)zoomScale {
-    if (_zoomScale == 0) return 1;
+    if (_zoomScale == 0) return 50;
     return _zoomScale;
 }
 
-//redraw when a new zoomScale is set
+//zoomScale setter, redraw when a new zoomScale is set
 - (void)setZoomScale:(CGFloat)zoomScale {
     if (_zoomScale != zoomScale) {
         _zoomScale = zoomScale;
@@ -28,7 +29,7 @@
     }
 }
 
-//redraw when a new originPoint is set
+//originPoint setter, redraw when a new originPoint is set
 - (void)setOriginPoint:(CGPoint)originPoint {
     if (!CGPointEqualToPoint(originPoint, _originPoint )) {
         _originPoint = originPoint;
@@ -88,6 +89,7 @@
     return self;
 }
 
+//draw
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();   //always get the context
@@ -95,9 +97,44 @@
     [[UIColor blueColor] setStroke];    //set line color
     //draw axes
     [AxesDrawer drawAxesInRect:rect originAtPoint:self.originPoint scale:self.zoomScale];
+    
+    //Draw the equation, add in contentScaleFactor when you learn more about scaling the graph to Retnia display
+    CGFloat xValue, yValue, yCoord;
+    
+    CGContextBeginPath(context);
+    
+    xValue = -self.originPoint.x / self.zoomScale;
+    yValue = [self.dataSource yValueForCalculatorGraph:self usingXValue:xValue];
+    yCoord = self.originPoint.y - (yValue * self.zoomScale);
+    CGContextMoveToPoint(context, 0, yCoord);
+    
+    for (int i = 0; i < self.bounds.size.width; i++) {
+        xValue = (i - self.originPoint.x) / self.zoomScale;
+        yValue = [self.dataSource yValueForCalculatorGraph:self usingXValue:xValue];
+        yCoord = self.originPoint.y - (yValue * self.zoomScale);
+        CGContextAddLineToPoint(context, i, yCoord);
+    }
+    CGContextDrawPath(context, kCGPathStroke);
+    
 }
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     
     
