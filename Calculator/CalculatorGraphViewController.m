@@ -8,8 +8,9 @@
 
 #import "CalculatorGraphViewController.h"
 #import "CalculatorGraphView.h"
+#import "CalculatorBrain.h"
 
-@interface CalculatorGraphViewController()
+@interface CalculatorGraphViewController() <CalculatorGraphViewDataSource>
 @property (nonatomic, weak) IBOutlet CalculatorGraphView *graphView; //create an outlet to CalculatorGraphView
 @end
 
@@ -17,8 +18,19 @@
 @synthesize graphView = _graphView;
 @synthesize program = _program;
 
+//test program, delete later
+- (id)program {
+    if (_program == nil) {
+//        _program = [[NSArray alloc] initWithObjects:@"x", @"cos", nil];
+        _program = [[NSArray alloc] initWithObjects:@"x", nil];
+    }
+    return _program;
+}
+
 - (void)setGraphView:(CalculatorGraphView *)graphView {
     _graphView = graphView;
+    //set CalculatorGraphView dataSource to be this controller
+    self.graphView.dataSource = self;
     //Only views have recognizers
     //enable pinch gesture in the CalculatorGraphView using its pinch: handler
     [self.graphView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pinch:)]];
@@ -26,6 +38,11 @@
     [self.graphView addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pan:)]];
     //enable triple-tap gesture to set originPoint in the CalculatorGraphView using its tripleTapSetOriginPoint: handler
     [self.graphView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(tripleTapSetOriginPoint:)]];
+}
+
+- (double)yValueForCalculatorGraph:(CalculatorGraphView *)sender usingXValue:(double)xVal {
+    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithDouble:xVal], @"x", nil];
+    return [CalculatorBrain runProgram:self.program usingVariableValues:dictionary];
 }
 
 //returns YES to supports all orientations
