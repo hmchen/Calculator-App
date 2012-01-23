@@ -7,6 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class CalculatorGraphView; //forward reference
+
+@protocol CalculatorGraphViewDataSource
+- (double)yValueForCalculatorGraph:(CalculatorGraphView *)sender usingXValue:(double)xVal;
+@end
 
 @interface CalculatorGraphView : UIView
 
@@ -16,5 +21,7 @@
 - (void)pinch:(UIPinchGestureRecognizer *)gesture;
 - (void)pan:(UIPanGestureRecognizer *)gesture;
 - (void)tripleTapSetOriginPoint:(UITapGestureRecognizer *)gesture;
+
+@property (nonatomic, weak) IBOutlet id <CalculatorGraphViewDataSource> dataSource;
 
 @end
