@@ -384,7 +384,8 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="4EV-99-0gs" kind="push" identifier="Graph" id="A0S-zu-CER"/>
+                                    <action selector="graphPressed" destination="2" eventType="touchUpInside" id="y2q-Zv-fcw"/>
+                                    <segue destination="4EV-99-0gs" kind="push" identifier="Graph" id="oGJ-Ay-wl3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -441,6 +442,28 @@
             <point key="canvasLocation" x="-96" y="-34"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CalculatorGraphView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CalculatorGraphView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dataSource"/>
+            </relationships>
+        </class>
+        <class className="CalculatorGraphViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CalculatorGraphViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="graphView" candidateClass="CalculatorGraphView"/>
+            </relationships>
+        </class>
+        <class className="CalculatorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CalculatorViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="display" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="displayHistory" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="displayVariablesInProgram" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
