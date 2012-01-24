@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CalculatorGraphViewController : UIViewController
+@interface CalculatorGraphViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (nonatomic, strong) id program; //the model, the current program when the graph button is pressed
 
