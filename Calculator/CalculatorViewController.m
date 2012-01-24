@@ -215,6 +215,7 @@
     [self updateDisplayVariablesInProgram];
 }
 
+
 //Prepare for segue, pass in brains program
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Graph"]) {
@@ -222,10 +223,26 @@
     }
 }
 
-- (void)viewDidUnload {
-    [self setDisplayVariablesInProgram:nil];
-    [super viewDidUnload];
+- (CalculatorGraphViewController *)splitViewCalculatorGraphViewController {
+    id cgv = [self.splitViewController.viewControllers lastObject]; //get detailed view controller
+    if (![cgv isKindOfClass:[CalculatorGraphViewController class]]) {
+        cgv = nil;
+    }
+    return cgv;
 }
+
+//Graph button pressed
+- (IBAction)graphPressed {
+    if ([self splitViewCalculatorGraphViewController]) {
+        [self splitViewCalculatorGraphViewController].program = self.brain.program;
+    }
+}
+
+//returns YES to supports all orientations
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return YES; 
+}
+
 @end
 
 
