@@ -61,4 +61,44 @@
     return YES; 
 }
 
+//set self as splitViewController delegate when coming out of storyboard.
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.splitViewController.delegate = self;
+}
+
+//hide masterView when in portrait orientation
+- (BOOL)splitViewController:(UISplitViewController *)svc 
+   shouldHideViewController:(UIViewController *)vc 
+              inOrientation:(UIInterfaceOrientation)orientation {
+    return UIInterfaceOrientationIsPortrait(orientation);
+}
+
+//show barButtonItem when hiding masterView
+- (void)splitViewController:(UISplitViewController *)svc 
+     willHideViewController:(UIViewController *)aViewController 
+          withBarButtonItem:(UIBarButtonItem *)barButtonItem 
+       forPopoverController:(UIPopoverController *)pc {
+    barButtonItem.title = aViewController.title;
+    self.splitViewBarButtonItem = barButtonItem;
+}
+
+//get ride of barButtonItem when showing masterView
+- (void)splitViewController:(UISplitViewController *)svc 
+     willShowViewController:(UIViewController *)aViewController 
+  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
+    self.splitViewBarButtonItem = nil;
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+
