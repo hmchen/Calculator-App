@@ -18,13 +18,10 @@
 @synthesize graphView = _graphView;
 @synthesize program = _program;
 
-//test program, delete later
-- (id)program {
-    if (_program == nil) {
-//        _program = [[NSArray alloc] initWithObjects:@"x", @"cos", nil];
-        _program = [[NSArray alloc] initWithObjects:@"x", nil];
-    }
-    return _program;
+//redraw view when program is updated
+- (void)setProgram:(id)program {
+    _program = program;
+    [self.graphView setNeedsDisplay];
 }
 
 - (void)setGraphView:(CalculatorGraphView *)graphView {
