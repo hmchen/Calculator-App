@@ -19,6 +19,7 @@
 @synthesize graphView = _graphView;
 @synthesize program = _program;
 @synthesize toolBar = _toolBar;
+@synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 
 //redraw view when program is updated
 - (void)setProgram:(id)program {
@@ -37,6 +38,17 @@
     [self.graphView addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pan:)]];
     //enable triple-tap gesture to set originPoint in the CalculatorGraphView using its tripleTapSetOriginPoint: handler
     [self.graphView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(tripleTapSetOriginPoint:)]];
+}
+
+- (void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem {
+    if (_splitViewBarButtonItem != splitViewBarButtonItem) {
+        NSMutableArray *toolBarItems = [self.toolBar.items mutableCopy]; //get toolbar items 
+        if (_splitViewBarButtonItem) [toolBarItems removeObject:_splitViewBarButtonItem]; //remove if the bar button item already exist
+        if (splitViewBarButtonItem) [toolBarItems insertObject:splitViewBarButtonItem atIndex:0]; //add new bar button item
+        self.toolBar.items = toolBarItems;
+        _splitViewBarButtonItem = splitViewBarButtonItem;
+        
+    }
 }
 
 - (double)yValueForCalculatorGraph:(CalculatorGraphView *)sender usingXValue:(double)xVal {
