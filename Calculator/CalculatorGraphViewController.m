@@ -12,11 +12,13 @@
 
 @interface CalculatorGraphViewController() <CalculatorGraphViewDataSource>
 @property (nonatomic, weak) IBOutlet CalculatorGraphView *graphView; //create an outlet to CalculatorGraphView
+@property (nonatomic, weak) IBOutlet UIToolbar *toolBar;
 @end
 
 @implementation CalculatorGraphViewController
 @synthesize graphView = _graphView;
 @synthesize program = _program;
+@synthesize toolBar = _toolBar;
 
 //redraw view when program is updated
 - (void)setProgram:(id)program {
